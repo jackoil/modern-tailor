@@ -9,6 +9,17 @@
 @endsection
 
 
+@section('style')
+    <style>
+     video {
+       width: 100%;
+       height: auto;
+    }
+
+
+    </style>
+@endsection
+
 @section('content')
 
 
@@ -20,15 +31,14 @@
                     <div class="single-post row">
                         <div class="col-lg-12">
                             <div class="feature-img">
-                                <img class="img-fluid" src=" {{ env('PRODUCT_IMAGES_UPLOAD_PATH'). $product->images->first()->image }} " alt="">
+                                <image style="width: 100%" class="img-fluid" src=" {{ env('PRODUCT_IMAGES_UPLOAD_PATH'). $product->images->first()->image }} " alt="">
                             </div>
                             <hr/>
-                            <div class="video col-lg-12" >
+                            <div class= "col-s-6" >
                                 <video width="700" height="240"  autoplay controls>
                                     <source src="{{URL::asset("upload/files/products/images/test.mp4")}}" type="video/mp4">
                                   Your browser does not support the video tag.
                               </video>
-
 
                             </div>
                         </div>
@@ -42,9 +52,10 @@
                                 </div>
                                 <ul class="blog_meta list">
                                         <li><a href="#">Mark wiens<i class="fa fa-user-o"></i></a></li>
-                                        <li><a href="#">12 Dec, 2017<i class="fa fa-calendar-o"></i></a></li>
-                                        <li><a href="#">1.2M Views<i class="fa fa-eye"></i></a></li>
-                                        <li><a href="#">06 Comments<i class="fa fa-comment-o"></i></a></li>
+                                        <li><a href="#"> {{ 'پست  شده در ' }}   {{ verta($product->created_at)->format(' l %d  %B %Y ساعت  h:m')  }}  <i class="fa fa-calendar-o"></i></a></li>
+                                        <li><a href="#">{{ 'ویرایش شده در ' }}  {{ verta($product->updated_at)->format(' l %d  %B %Y ساعت  h:m')  }}   <i class="fa fa-calendar-o"></i></a></li>
+                                        <li><a href="#"> 1.2M Views <i class="fa fa-eye"></i></a></li>
+                                        <li><a href="#">{{  $product->approvedComments->count() }}   Comments <i class="fa fa-comment-o"></i></a></li>
                                     </ul>
                                 <ul class="social-links">
                                     <li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -72,10 +83,10 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <img class="img-fluid" src="assets/images/blog-details/post-img1.jpg" alt="">
+                                    <img class="img-fluid" src="{{ asset('images/blog/blog-details/post-img1.jpg') }}" alt="">
                                 </div>
                                 <div class="col-6">
-                                    <img class="img-fluid" src="assets/images/blog-details/post-img2.jpg" alt="">
+                                    <img class="img-fluid" src="{{ asset('images/blog/blog-details/post-img1.jpg') }}" alt="">
                                 </div>
                                 <div class="col-lg-12 my-4">
                                     <p>
@@ -94,7 +105,7 @@
                             <div class="single-comment justify-content-between d-flex">
                                 <div class="user justify-content-between d-flex">
                                     <div class="thumb">
-                                        <img src="assets/images/blog-details/c1.jpg" alt="">
+                                        <img src="{{ asset('images/blog/blog-details/c1.jpg') }}" alt="">
                                     </div>
                                     <div class="desc">
                                         <h5><a href="#">Emilly Blunt</a></h5>
@@ -113,7 +124,7 @@
                             <div class="single-comment justify-content-between d-flex">
                                 <div class="user justify-content-between d-flex">
                                     <div class="thumb">
-                                        <img src="assets/images/blog-details/c2.jpg" alt="">
+                                        <img src="{{ asset('images/blog/blog-details/c2.jpg') }}" alt="">
                                     </div>
                                     <div class="desc">
                                         <h5><a href="#">Elsie Cum</a></h5>
@@ -132,7 +143,7 @@
                             <div class="single-comment justify-content-between d-flex">
                                 <div class="user justify-content-b etween d-flex">
                                     <div class="thumb">
-                                        <img src="{{asset('/images/blog-details/c3.jpg')}}" alt="">
+                                        <img src="{{ asset('images/blog/blog-details/c2.jpg') }}" alt="">
                                     </div>
                                     <div class="desc">
                                         <h5><a href="#">Annie Steph</a></h5>
@@ -151,7 +162,7 @@
                             <div class="single-comment justify-content-between d-flex">
                                 <div class="user justify-content-between d-flex">
                                     <div class="thumb">
-                                        <img src="assets/images/blog-details/c4.jpg" alt="">
+                                        <img src="{{ asset('images/blog/blog-details/c4.jpg') }}" alt="">
                                     </div>
                                     <div class="desc">
                                         <h5><a href="#">Maria Luna</a></h5>
@@ -170,7 +181,7 @@
                             <div class="single-comment justify-content-between d-flex">
                                 <div class="user justify-content-between d-flex">
                                     <div class="thumb">
-                                        <img src="assets/images/blog-details/c5.jpg" alt="">
+                                        <img src="{{ asset('images/blog/blog-details/c5.jpg') }}" alt="">
                                     </div>
                                     <div class="desc">
                                         <h5><a href="#">Ina Hayes</a></h5>
@@ -219,7 +230,7 @@
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget author_widget">
-                            <img class="author_img rounded-circle" src="assets/images/blog/author.png" alt="">
+                            <img class="author_img rounded-circle" src="{{asset('images/blog/blog/author.png')}}" alt="">
                             <h5>Charlie Barber</h5>
                             <p>Senior blog writer</p>
                             <div class="social_icon">
@@ -234,28 +245,28 @@
                         <aside class="single_sidebar_widget popular_post_widget">
                             <h4 class="widget_title">Popular Posts</h4>
                             <div class="media post_item">
-                                <img src="assets/images/blog/popular-post/post1.jpg" alt="post">
+                                <img src="{{asset('images/blog/blog/popular-post/post1.jpg')}}" alt="post">
                                 <div class="media-body">
                                     <a href="blog-details.html"><h5>Space The Final Frontier</h5></a>
                                     <p>02 Hours ago</p>
                                 </div>
                             </div>
                             <div class="media post_item">
-                                <img src="assets/images/blog/popular-post/post2.jpg" alt="post">
+                                <img src="{{asset('images/blog/blog/popular-post/post2.jpg')}}" alt="post">
                                 <div class="media-body">
                                     <a href="blog-details.html"><h5>The Amazing Hubble</h5></a>
                                     <p>02 Hours ago</p>
                                 </div>
                             </div>
                             <div class="media post_item">
-                                <img src="assets/images/blog/popular-post/post3.jpg" alt="post">
+                                <img src="{{asset('images/blog/blog/popular-post/post3.jpg')}}" alt="post">
                                 <div class="media-body">
                                     <a href="blog-details.html"><h5>Astronomy Or Astrology</h5></a>
                                     <p>03 Hours ago</p>
                                 </div>
                             </div>
                             <div class="media post_item">
-                                <img src="assets/images/blog/popular-post/post4.jpg" alt="post">
+                                <img src="{{asset('images/blog/blog/popular-post/post4.jpg')}}" alt="post">
                                 <div class="media-body">
                                     <a href="blog-details.html"><h5>Asteroids telescope</h5></a>
                                     <p>01 Hours ago</p>
@@ -264,7 +275,7 @@
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget ads_widget">
-                            <a href="#"><img class="img-fluid" src="assets/images/blog/add.jpg" alt=""></a>
+                            <a href="#"><img class="img-fluid" src="{{asset('images/blog/blog/add.jpg')}}" alt=""></a>
                             <div class="br"></div>
                         </aside>
                         <aside class="single_sidebar_widget post_category_widget">
@@ -387,14 +398,14 @@
                         <div class="single-widge-home">
                             <h3 class="mb-4">instagram feed</h3>
                             <div class="feed">
-                                <img src="assets/images/feed1.jpg" alt="feed">
-                                <img src="assets/images/feed2.jpg" alt="feed">
-                                <img src="assets/images/feed3.jpg" alt="feed">
-                                <img src="assets/images/feed4.jpg" alt="feed">
-                                <img src="assets/images/feed5.jpg" alt="feed">
-                                <img src="assets/images/feed6.jpg" alt="feed">
-                                <img src="assets/images/feed7.jpg" alt="feed">
-                                <img src="assets/images/feed8.jpg" alt="feed">
+                                <img src="{{asset('images/blog/feed1.jpg')}}" alt="feed">
+                                <img src="{{asset('images/blog/feed2.jpg')}}" alt="feed">
+                                <img src="{{asset('images/blog/feed3.jpg')}}" alt="feed">
+                                <img src="{{asset('images/blog/feed4.jpg')}}" alt="feed">
+                                <img src="{{asset('images/blog/feed5.jpg')}}" alt="feed">
+                                <img src="{{asset('images/blog/feed6.jpg')}}" alt="feed">
+                                <img src="{{asset('images/blog/feed7.jpg')}}" alt="feed">
+                                <img src="{{asset('images/blog/feed8.jpg')}}" alt="feed">
                             </div>
                         </div>
                     </div>

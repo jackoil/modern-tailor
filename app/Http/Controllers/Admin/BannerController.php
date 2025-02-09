@@ -26,7 +26,15 @@ class BannerController extends Controller
      */
     public function create()
     {
-        return view('admin.banners.create');
+        $types  = [
+            '1'=> 'index-top',
+            '2'=> 'index-bottom',
+            '3'=> 'slider',
+            '4'=> 'blog'
+
+        ];
+
+        return view('admin.banners.create' , compact('types')   );
     }
 
     /**
@@ -81,7 +89,15 @@ class BannerController extends Controller
      */
     public function edit(Banner $banner)
     {
-        return view('admin.banners.edit', compact('banner'));
+        $types  = [
+            '1'=> 'index-top',
+            '2'=> 'index-bottom',
+            '3'=> 'slider',
+            '4'=> 'blog'
+
+        ];
+
+        return view('admin.banners.edit', compact('banner','types'));
     }
 
     /**

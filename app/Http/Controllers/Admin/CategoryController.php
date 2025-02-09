@@ -178,4 +178,20 @@ class CategoryController extends Controller
 
         return ['attributes' => $attributes , 'variation' => $variation];
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function changeActive(Category $category)
+    {
+        $category->is_active   =  ($category->is_active == "غیرفعال" )  ?  1 : 0;
+       //  dd($category);
+        $category->save();
+        return redirect()->route('admin.categories.index');
+    }
+
+
 }

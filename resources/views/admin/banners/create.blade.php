@@ -64,7 +64,14 @@
 
                     <div class="form-group col-md-3">
                         <label for="type">نوع بنر</label>
-                        <input class="form-control" id="type" name="type" type="text" value="{{ old('type') }}">
+                        <select class="form-control" id="type" name="type">
+                            @foreach ($types as $key => $value)
+                                 <option value="{{ $value }}"  selected > {{$value}} </option>
+
+                            @endforeach
+
+                        </select>
+                        {{-- <input class="form-control" id="type" name="type" type="text" value="{{ old('type') }}"> --}}
                     </div>
 
                     <div class="form-group col-md-3">

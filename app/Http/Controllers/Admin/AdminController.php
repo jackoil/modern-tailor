@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     public function index()
     {
+
         $month = 12;
 
         $successTransactions = Transaction::getData($month, 1);
@@ -25,6 +27,8 @@ class AdminController extends Controller
             'labels' => array_keys($successTransactionsChart),
             'transactionsCount' => [$successTransactions->count() , $unsuccessTransactions->count()]
         ]);
+
+
     }
 
     public function chart($transactions, $month)
@@ -53,5 +57,9 @@ class AdminController extends Controller
             return array_reverse(array_merge($shamsiMonths, $result));
         }
         return $result;
+    }
+
+    public function login(){
+        return view('admin.auth.login', [ ] );
     }
 }

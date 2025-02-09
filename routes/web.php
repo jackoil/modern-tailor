@@ -52,6 +52,7 @@ use Illuminate\Support\Facades\Response;
 */
 
 Route::get('/admin-panel/dashboard', [AdminController::class , 'index'])->name('dashboard');
+Route::get('/admin-panel/login', [AdminController::class , 'login'])->name('dashboard.login');
 
 Route::prefix('admin-panel/management')->name('admin.')->group(function () {
 
@@ -70,6 +71,11 @@ Route::prefix('admin-panel/management')->name('admin.')->group(function () {
     Route::resource('roles', RoleController::class);
 
     Route::get('/comments/{comment}/change-approve', [CommentController::class, 'changeApprove'])->name('comments.change-approve');
+
+    Route::get('/categories/{category}/change-active', [CategoryController::class, 'changeActive'])->name('categories.change-active');
+
+
+
 
     // Get Category Attributes
     Route::get('/category-attributes/{category}', [CategoryController::class, 'getCategoryAttributes']);
@@ -198,6 +204,7 @@ Route::get('/test', function (Request $request ) {
          $user = User::find(1);
          $user->notify(new  OTPSms(1234));
 
+      //
 
 
 

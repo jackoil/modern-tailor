@@ -2,9 +2,16 @@
 
 namespace App\Exceptions;
 
+use GuzzleHttp\Exception\ClientException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
+use PDOException;
 use throwable;
 use Exception;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -47,9 +54,17 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
    {
     if($exception instanceof NotFoundHttpException){
+         $contains = str_contains($request->getPathInfo() , 'admin-panel'  ) ;
+        if(Auth::guest() )
         return response()->view('errors/404', ['invalid_url'=>true], 404);
-    }
 
+        else if($contains   && Auth::User()->hasRole('csdc') )
+        return response()->view('errors/404Admin', ['invalid_url'=>true], 404);
+
+        else
+        return response()->view('errors/404', ['invalid_url'=>true], 404);
+
+    }
     if ($exception instanceof TokenMismatchException && Auth::guest()) {
         error_log('Error :' . $exception->getMessage());
         abort(500);

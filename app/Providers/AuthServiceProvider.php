@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // Gate::define('VIEWDASHBOARD', function ($user) {
+        //     return $user->hasPermission('VIEWDASHBOARD');
+        // });
     }
 }

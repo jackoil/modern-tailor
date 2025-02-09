@@ -10,11 +10,20 @@ class Category extends Model
     use HasFactory;
 
     protected $table = "categories";
-    protected $guarded = [];
+    protected $guarded = [  ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
 
     public function getIsActiveAttribute($is_active)
     {
         return $is_active ? 'فعال' : 'غیرفعال' ;
+    }
+
+    public function getIsActiveBoolAttribute($is_active)
+    {
+        return $is_active  ;
     }
 
     public function parent()

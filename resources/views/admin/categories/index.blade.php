@@ -62,6 +62,8 @@
                                         href="{{ route('admin.categories.show', ['category' => $category->id]) }}">نمایش</a>
                                     <a class="btn btn-sm btn-outline-info mr-3"
                                         href="{{ route('admin.categories.edit', ['category' => $category->id]) }}">ویرایش</a>
+                                        <a class="btn btn-sm btn-outline-primary mr-3"
+                                        href="{{ route('admin.categories.change-active', ['category' => $category->id]) }}">  فعالسازی   </a>
                                 </th>
                             </tr>
                         @endforeach
